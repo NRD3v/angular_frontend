@@ -36,10 +36,4 @@ class ResetHighlightedLink implements Action {
     }
 }
 
-export type LinksActions
-    =
-    | FetchLinks
-    | FetchLinksSuccess
-    | HighlightLink
-    | ResetHighlightedLink
-    ;
+export type LinksActions = | FetchLinks | FetchLinksSuccess | HighlightLink | ResetHighlightedLink;

@@ -1,6 +1,6 @@
 <h5>{{ city }}</h5>
 <ul *ngFor="let practice of practices">
     <li class="small">
-        <a href="#">{{ practice }}</a>
+        <a href="#" (click)="onClick(city, practice)">{{ practice }}</a>
     </li>
 </ul>

@@ -1,3 +1,7 @@
-<p>
-  doctor works!
-</p>
+<div>
+    <p>
+        {{ doctor.name }}
+        {{ doctor.city }}
+        <span *ngFor="let practice of doctor.practice">{{ practice }}</span>
+    </p>
+</div>

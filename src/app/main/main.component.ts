@@ -3,7 +3,9 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from '../ngrx/reducers';
 import {Observable} from 'rxjs';
 import * as actions from '../ngrx/actions/links';
-import {selectListState} from '../ngrx/selectors/link';
+import {selectLinksListState} from '../ngrx/selectors/link';
+import {selectDoctorsListState} from '../ngrx/selectors/doctors';
+import {Doctor} from '../doctor/models/doctor';
 import {Link} from '../link/models/link';
 
 @Component({
@@ -13,10 +15,12 @@ import {Link} from '../link/models/link';
 })
 export class MainComponent implements OnInit {
 
+    doctors$: Observable<Doctor[]>;
     links$: Observable<Link[]>;
 
     constructor(private store: Store<AppState>) {
-        this.links$ = store.pipe(select(selectListState));
+        this.doctors$ = store.pipe(select(selectDoctorsListState));
+        this.links$ = store.pipe(select(selectLinksListState));
     }
 
     ngOnInit() {

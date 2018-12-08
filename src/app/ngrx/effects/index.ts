@@ -1,3 +1,4 @@
+import {DoctorsEffects} from './doctors';
 import {LinksEffects} from './links';
 
-export const effects = [LinksEffects];
+export const effects = [DoctorsEffects, LinksEffects];

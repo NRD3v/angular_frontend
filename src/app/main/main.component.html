@@ -1,4 +1,9 @@
 <div class="bt1 mt20">
+    <div id="doctors" class="container row mt10 offset-2 col-8">
+        <app-doctor *ngFor="let doctor of doctors$ | async" [doctor]="doctor">
+        </app-doctor>
+    </div>
+
     <div id="links" class="container row mt10 offset-2 col-8">
         <app-link *ngFor="let link of ((links$ | async) | keyvalue); let index = index"
                   [practices]="link.value" [city]="link.key">

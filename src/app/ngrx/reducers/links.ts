@@ -11,7 +11,7 @@ export interface LinksState {
     highlightedLink: string;
 }
 
-export function linksReducer(state = initialState, action: Links.LinksActions): LinksState {
+export function reducer(state = initialState, action: Links.LinksActions): LinksState {
     switch (action.type) {
         case Links.ActionTypes.FetchLinksSuccess:
             state = {
