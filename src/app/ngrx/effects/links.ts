@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
@@ -12,13 +12,14 @@ export class LinksEffects {
     fetchLinks$: Observable<Action> = this.actions$.pipe(
         ofType(Links.ActionTypes.FetchLinks),
         mergeMap(() => {
-            return this.http.get('http://127.0.0.1:8000/links').pipe(
-                map(data => {
-                    return ({ type: Links.ActionTypes.FetchLinksSuccess, payload: data });
-                })
+            return this.apiService.links().pipe(
+                map(data => ({
+                    type: Links.ActionTypes.FetchLinksSuccess,
+                    payload: data
+                }))
             );
         })
     );
 
-    constructor(private http: HttpClient, private actions$: Actions) {}
+    constructor(private apiService: ApiService, private actions$: Actions) {}
 }

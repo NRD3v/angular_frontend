@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
@@ -12,18 +12,19 @@ export class DoctorsEffects {
     fetchDoctors$: Observable<Action> = this.actions$.pipe(
         ofType(Doctors.ActionTypes.FetchDoctors),
         mergeMap((action) => {
-            return this.http.post('http://127.0.0.1:8000/search', {
+            const params = {
                 city: action.payload.city,
                 practice: action.payload.practice,
                 searchType: 'search_by_city_and_practice',
-            }).pipe(
-                map(data => {
-                    console.log(data);
-                    return ({ type: Doctors.ActionTypes.FetchDoctorsSuccess, payload: data });
-                })
+            };
+            return this.apiService.search(params).pipe(
+                map(data => ({
+                    type: Doctors.ActionTypes.FetchDoctorsSuccess,
+                    payload: data
+                }))
             );
         })
     );
 
-    constructor(private http: HttpClient, private actions$: Actions) {}
+    constructor(private apiService: ApiService, private actions$: Actions) {}
 }

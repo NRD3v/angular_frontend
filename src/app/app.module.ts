@@ -12,6 +12,7 @@ import { MainComponent } from './main/main.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { FormDoctorComponent } from './doctor/form/form-doctor/form-doctor.component';
 import { LinkComponent } from './link/link.component';
+import { ApiService } from './services/api.service';
 import { ObjectLengthPipe } from './pipes/object-length.pipe';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -33,7 +34,7 @@ import { environment } from '../environments/environment';
         HttpClientModule,
         NgbModule
     ],
-    providers: [],
+    providers: [ApiService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
